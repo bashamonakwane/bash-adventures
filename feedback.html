@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback | Bash Adventures</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <h1 class="logo">Bash Adventures</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="destinations.html">Destinations</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+					<li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="feedback.html" class="active">Feedback</a></li>
+				    <li><a href="booking.html"></a>Booking</li>
+			        <li><a href="traveler.html"></a>Traveler</li>
+					
+					
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="feedback-section container">
+            <h2 class="section-title">We Value Your Feedback</h2>
+            <p class="section-description">Please share your experience with us so we can continue to improve our services.</p>
+
+            <form class="feedback-form" aria-label="Feedback Form">
+                <div class="form-group">
+                    <label for="fullname">Full Name:</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="rating">How would you rate your experience?</label>
+                    <select id="rating" name="rating" required>
+                        <option value="">-- Select a Rating --</option>
+                        <option value="5">Excellent</option>
+                        <option value="4">Very Good</option>
+                        <option value="3">Good</option>
+                        <option value="2">Fair</option>
+                        <option value="1">Poor</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="comments">Additional Comments:</label>
+                    <textarea id="comments" name="comments" rows="5"></textarea>
+                </div>
+
+                <button type="submit" class="btn">Submit Feedback</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Bash Adventures. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

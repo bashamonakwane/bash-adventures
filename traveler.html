@@ -1,0 +1,156 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Adventure | Bash Adventures</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="js/script.js" defer></script>
+    <style>
+        /* Add some basic styling for the button */
+        .traveler-info-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        
+        .traveler-info-btn:hover {
+            background-color: #45a049;
+        }
+        
+        /* Style for the traveler info section */
+        #traveler-info-section {
+            display: none;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bash Adventures</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="traveler.html">Traveler</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="booking" class="section">
+        <div class="booking-container">
+            <h1>Book Your Adventure</h1>
+            
+            <div class="booking-steps">
+                <div class="step active">1. Package Details</div>
+                <div class="step">2. Traveler Info</div>
+                <div class="step">3. Payment</div>
+                <div class="step">4. Confirmation</div>
+            </div>
+            
+            <form id="booking-form" class="booking-form">
+                <!-- Package Selection Section -->
+                <div class="form-section active" id="package-section">
+                    <h2>Select Your Package</h2>
+                    <div class="package-options">
+                        <div class="package-option">
+                            <input type="radio" name="package" id="safari" value="Safari Adventure" checked>
+                            <label for="safari">
+                                <h3>Safari Adventure</h3>
+                                <p class="price">$1200</p>
+                                <p class="duration">7 Days, 6 Nights</p>
+                            </label>
+                        </div>
+                        
+                        <div class="package-option">
+                            <input type="radio" name="package" id="beach" value="Beach Holiday">
+                            <label for="beach">
+                                <h3>Beach Holiday</h3>
+                                <p class="price">$800</p>
+                                <p class="duration">5 Days, 4 Nights</p>
+                            </label>
+                        </div>
+                        
+                        <div class="package-option">
+                            <input type="radio" name="package" id="mountain" value="Mountain Trekking">
+                            <label for="mountain">
+                                <h3>Mountain Trekking</h3>
+                                <p class="price">$1500</p>
+                                <p class="duration">8 Days, 7 Nights</p>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Traveler Info Button -->
+                    <button type="button" id="traveler-info-btn" class="traveler-info-btn">Show Traveler Information</button>
+                    
+                    <!-- Traveler Info Section (initially hidden) -->
+                    <div id="traveler-info-section">
+                        <h3>Traveler Information</h3>
+                        <div class="form-group">
+                            <label for="full-name">Full Name</label>
+                            <input type="text" id="full-name" name="full-name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="next-btn">Next: Traveler Info</button>
+                </div>
+                
+                <!-- Rest of your form sections remain the same -->
+                <!-- ... -->
+                
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Bash Adventures. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript to handle the traveler info button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const travelerInfoBtn = document.getElementById('traveler-info-btn');
+            const travelerInfoSection = document.getElementById('traveler-info-section');
+            
+            if (travelerInfoBtn && travelerInfoSection) {
+                travelerInfoBtn.addEventListener('click', function() {
+                    if (travelerInfoSection.style.display === 'none' || travelerInfoSection.style.display === '') {
+                        travelerInfoSection.style.display = 'block';
+                        travelerInfoBtn.textContent = 'Hide Traveler Information';
+                    } else {
+                        travelerInfoSection.style.display = 'none';
+                        travelerInfoBtn.textContent = 'Show Traveler Information';
+                    }
+                });
+            }
+            
+            // You can keep your existing form navigation logic here
+            // ...
+        });
+    </script>
+</body>
+</html>

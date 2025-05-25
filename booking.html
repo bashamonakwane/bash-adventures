@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Adventure | Bash Adventures</title>
+    <style>
+        /* Basic styling for the booking form */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #34495e;
+            margin: 0;
+        }
+        
+        nav li {
+            margin: 0 15px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+        
+        .booking-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .booking-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .step {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            background-color: #ecf0f1;
+            color: #7f8c8d;
+        }
+        
+        .step.active {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .form-section {
+            display: none;
+        }
+        
+        .form-section.active {
+            display: block;
+        }
+        
+        .package-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .package-option {
+            flex: 1;
+            min-width: 200px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .package-option input[type="radio"] {
+            display: none;
+        }
+        
+        .package-option input[type="radio"]:checked + label {
+            border-color: #3498db;
+            background-color: #f0f8ff;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        .card-details {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .card-details .form-group {
+            flex: 1;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .confirmation-message {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .booking-summary {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bash Adventures</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="traveler.html">Traveler</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="booking" class="section">
+        <div class="booking-container">
+            <h1>Book Your Adventure</h1>
+            
+            <div class="booking-steps">
+                <div class="step active" id="step1">1. Package Details</div>
+                <div class="step" id="step2">2. Traveler Info</div>
+                <div class="step" id="step3">3. Payment</div>
+                <div class="step" id="step4">4. Confirmation</div>
+            </div>
+            
+            <form id="booking-form" class="booking-form">
+                <!-- Package Selection Section -->
+                <div class="form-section active" id="package-section">
+                    <h2>Select Your Package</h2>
+                    <div class="package-options">
+                        <div class="package-option">
+                            <input type="radio" name="package" id="safari" value="Safari Adventure" checked>
+                            <label for="safari">
+                                <h3>Safari Adventure</h3>
+                                <p class="price">P1900</p>
+                                <p class="duration">7 Days, 6 Nights</p>
+                            </label>
+                        </div>
+                        
+                        <div class="package-option">
+                            <input type="radio" name="package" id="beach" value="Beach Holiday">
+                            <label for="beach">
+                                <h3>Beach Holiday</h3>
+                                <p class="price">P1800</p>
+                                <p class="duration">5 Days, 4 Nights</p>
+                            </label>
+                        </div>
+                        
+                        <div class="package-option">
+                            <input type="radio" name="package" id="mountain" value="Mountain Trekking">
+                            <label for="mountain">
+                                <h3>Mountain Trekking</h3>
+                                <p class="price">P2500</p>
+                                <p class="duration">8 Days, 7 Nights</p>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="button" class="next-btn" onclick="nextSection('package-section', 'traveler-section', 'step1', 'step2')">Next: Traveler Info</button>
+                </div>
+                
+                <!-- Traveler Info Section -->
+                <div class="form-section" id="traveler-section">
+                    <h2>Traveler Information</h2>
+                    <div class="form-group">
+                        <label for="full-name">Full Name</label>
+                        <input type="text" id="full-name" name="full-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="travel-date">Preferred Travel Date</label>
+                        <input type="date" id="travel-date" name="travel-date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="travelers">Number of Travelers</label>
+                        <select id="travelers" name="travelers" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5+">5+ (Group)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="button" class="prev-btn" onclick="prevSection('traveler-section', 'package-section', 'step2', 'step1')">Previous</button>
+                        <button type="button" class="next-btn" onclick="nextSection('traveler-section', 'payment-section', 'step2', 'step3')">Next: Payment</button>
+                    </div>
+                </div>
+                
+                <!-- Payment Section -->
+                <div class="form-section" id="payment-section">
+                    <h2>Payment Information</h2>
+                    <div class="form-group">
+                        <label for="card-name">Name on Card</label>
+                        <input type="text" id="card-name" name="card-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" required>
+                    </div>
+                    
+                    <div class="card-details">
+                        <div class="form-group">
+                            <label for="expiry">Expiry Date</label>
+                            <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" name="cvv" placeholder="123" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="button" class="prev-btn" onclick="prevSection('payment-section', 'traveler-section', 'step3', 'step2')">Previous</button>
+                        <button type="button" class="submit-btn" onclick="submitBooking()">Complete Booking</button>
+                    </div>
+                </div>
+                
+                <!-- Confirmation Section (shown after submission) -->
+                <div class="form-section" id="confirmation-section">
+                    <div class="confirmation-message">
+                        <h2>Booking Confirmed!</h2>
+                        <p>Thank you for booking with Bash Adventures!</p>
+                        <p>A confirmation has been sent to your email.</p>
+                        <div class="booking-summary">
+                            <h3>Your Booking Details:</h3>
+                            <p id="summary-package"></p>
+                            <p id="summary-date"></p>
+                            <p id="summary-travelers"></p>
+                            <p id="summary-total"></p>
+                        </div>
+                        <a href="index.html" class="home-btn">Return to Home</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Bash Adventures. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Navigation functions
+        function nextSection(currentId, nextId, currentStepId, nextStepId) {
+            // Validate current section before proceeding
+            if (validateSection(currentId)) {
+                document.getElementById(currentId).classList.remove('active');
+                document.getElementById(nextId).classList.add('active');
+                
+                document.getElementById(currentStepId).classList.remove('active');
+                document.getElementById(nextStepId).classList.add('active');
+                
+                // Scroll to top of the form
+                document.getElementById(nextId).scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        function prevSection(currentId, prevId, currentStepId, prevStepId) {
+            document.getElementById(currentId).classList.remove('active');
+            document.getElementById(prevId).classList.add('active');
+            
+            document.getElementById(currentStepId).classList.remove('active');
+            document.getElementById(prevStepId).classList.add('active');
+            
+            // Scroll to top of the form
+            document.getElementById(prevId).scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Basic validation for each section
+        function validateSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const inputs = section.querySelectorAll('input[required], select[required]');
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.style.borderColor = 'red';
+                    isValid = false;
+                } else {
+                    input.style.borderColor = '#ddd';
+                }
+                
+                // Special validation for email
+                if (input.type === 'email' && input.value.trim()) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(input.value)) {
+                        input.style.borderColor = 'red';
+                        isValid = false;
+                    }
+                }
+                
+                // Special validation for card number
+                if (input.id === 'card-number' && input.value.trim()) {
+                    const cardRegex = /^\d{16}$/;
+                    const cleanedValue = input.value.replace(/\s/g, '');
+                    if (!cardRegex.test(cleanedValue)) {
+                        input.style.borderColor = 'red';
+                        isValid = false;
+                    }
+                }
+            });
+            
+            if (!isValid) {
+                alert('Please fill in all required fields correctly.');
+            }
+            
+            return isValid;
+        }
+        
+        // Submit booking function
+        function submitBooking() {
+            if (validateSection('payment-section')) {
+                // Get all the booking details
+                const package = document.querySelector('input[name="package"]:checked').value;
+                const fullName = document.getElementById('full-name').value;
+                const email = document.getElementById('email').value;
+                const travelDate = document.getElementById('travel-date').value;
+                const travelers = document.getElementById('travelers').value;
+                
+                // Calculate total price based on package and number of travelers
+                let basePrice = 0;
+                switch(package) {
+                    case 'Safari Adventure': basePrice = 1900; break;
+                    case 'Beach Holiday': basePrice = 1800; break;
+                    case 'Mountain Trekking': basePrice = 2500; break;
+                }
+                
+                let totalPrice = basePrice;
+                if (travelers === '2') totalPrice = basePrice * 1.8; // Discount for 2
+                if (travelers === '3') totalPrice = basePrice * 2.5; // Discount for 3
+                if (travelers === '4') totalPrice = basePrice * 3.0; // Discount for 4
+                if (travelers === '5+') totalPrice = basePrice * 3.5; // Group discount
+                
+                // Update confirmation section with booking details
+                document.getElementById('summary-package').textContent = `Package: P{package}`;
+                document.getElementById('summary-date').textContent = `Travel Date: P{new Date(travelDate).toLocaleDateString()}`;
+                document.getElementById('summary-travelers').textContent = `Travelers: P{travelers}`;
+                document.getElementById('summary-total').textContent = `Total Price: PP{totalPrice.toFixed(2)}`;
+                
+                // Show confirmation and hide payment section
+                document.getElementById('payment-section').classList.remove('active');
+                document.getElementById('confirmation-section').classList.add('active');
+                
+                // Update steps
+                document.getElementById('step3').classList.remove('active');
+                document.getElementById('step4').classList.add('active');
+                
+                // Scroll to confirmation
+                document.getElementById('confirmation-section').scrollIntoView({ behavior: 'smooth' });
+                
+                // In a real application, you would send this data to a server here
+                console.log('Booking submitted:', {
+                    package,
+                    fullName,
+                    email,
+                    travelDate,
+                    travelers,
+                    totalPrice
+                });
+            }
+        }
+    </script>
+</body>
+</html>
